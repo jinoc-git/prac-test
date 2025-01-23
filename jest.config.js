@@ -8,6 +8,10 @@ const config = {
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
   moduleNameMapper: {},
+  preset: 'ts-jest',
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
 
   // Force coverage collection from ignored files using an array of glob patterns
   // forceCoverageMatch: [],
