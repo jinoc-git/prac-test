@@ -10,7 +10,7 @@ const config = {
   moduleNameMapper: {},
   preset: 'ts-jest',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+.(ts|tsx|js|jsx)$': 'babel-jest',
   },
 
   // Force coverage collection from ignored files using an array of glob patterns
