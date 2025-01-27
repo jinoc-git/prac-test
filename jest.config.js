@@ -12,7 +12,7 @@ const config = {
   transform: {
     '^.+.(ts|tsx|js|jsx)$': 'babel-jest',
   },
-
+  setupFilesAfterEnv: ['./jest.setup.js'],
   // Force coverage collection from ignored files using an array of glob patterns
   // forceCoverageMatch: [],
 
