@@ -4,7 +4,9 @@
  */
 
 /** @type {import('jest').Config} */
-const config = {
+import type { Config } from 'jest';
+
+const config: Config = {
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
   moduleNameMapper: {},
@@ -12,7 +14,7 @@ const config = {
   transform: {
     '^.+.(ts|tsx|js|jsx)$': 'babel-jest',
   },
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
   // Force coverage collection from ignored files using an array of glob patterns
   // forceCoverageMatch: [],
 
