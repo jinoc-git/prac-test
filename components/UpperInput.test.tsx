@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import UpperInput from './UpperInput';
 
 test('sets the value to the upper version of the value', async () => {
@@ -10,7 +10,5 @@ test('sets the value to the upper version of the value', async () => {
   fireEvent.change(upperInput, { target: { value } });
 
   // expect(upperInput.value).toEqual(value.toUpperCase());
-  expect(upperInput).toHaveTextContent(value.toUpperCase());
-  // waitFor(() => {
-  // });
+  expect(upperInput).toHaveValue(value.toUpperCase());
 });
