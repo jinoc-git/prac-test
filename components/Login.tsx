@@ -48,7 +48,9 @@ function Login() {
           <label htmlFor="passwordInput">Password</label>
           <input id="passwordInput" type="password" />
         </div>
-        <button type="submit">Submit{state.loading ? '...' : null}</button>
+        <button type="submit" disabled={state.loading}>
+          Submit{state.loading && '...'}
+        </button>
       </form>
       {state.error ? <div role="alert">{state.error}</div> : null}
       {state.resolved ? (

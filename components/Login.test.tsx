@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import Login from './Login';
 import axios from 'axios';
 
@@ -43,15 +49,19 @@ describe('Login', () => {
     return { usernameInput, passwordInput, submitButton, fill };
   };
 
-  it('should render loading text when form is submitting', async () => {
-    const { fill } = renderComponent();
+  it('should change disabled submit button when form status', async () => {
+    const { fill, submitButton } = renderComponent();
 
     fill('john', '123123');
 
-    expect(await screen.findByText('Submit...')).toBeInTheDocument();
+    expect(submitButton).toBeDisabled();
+
+    await waitFor(() => {
+      expect(submitButton).not.toBeDisabled();
+    });
   });
 
-  it('should render resolve text when login is success', async () => {
+  it('should render resolve text when login is successed', async () => {
     const { fill } = renderComponent();
 
     fill('john', '123123');
@@ -59,7 +69,7 @@ describe('Login', () => {
     expect(await screen.findByText(/congrats/i)).toBeInTheDocument();
   });
 
-  it('should save token when login is success', async () => {
+  it('should save token when login is successed', async () => {
     const { fill } = renderComponent();
 
     fill('john', '123123');
@@ -70,7 +80,7 @@ describe('Login', () => {
     });
   });
 
-  it('should render error text when login is fail', async () => {
+  it('should render error text when login is failed', async () => {
     const { fill } = renderComponent();
 
     fill('john', '123456');
@@ -78,7 +88,7 @@ describe('Login', () => {
     expect(await screen.findByText(/unauthorized/i)).toBeInTheDocument();
   });
 
-  it('should not save token when login is fail', async () => {
+  it('should not save token when login is failed', async () => {
     const { fill } = renderComponent();
 
     fill('john', '123456');
